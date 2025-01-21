@@ -208,7 +208,35 @@
             <textarea cols="30" rows="10" placeholder="Message" required></textarea>
             <input type="submit" value="Send Message" class="btn" onclick="href='mailto:jaiku2004@gmail.com' ">
         </form>
-       
+               <script>
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault(); // Prevent form from submitting normally
+        
+              // Retrieve form values
+              const fullName = document.querySelector('input[placeholder="Full Name"]').value.trim();
+              const email = document.querySelector('input[placeholder="Email"]').value.trim();
+              const mobileNumber = document.querySelector('input[placeholder="Mobile Number"]').value.trim();
+              const subject = document.querySelector('input[placeholder="Subject For"]').value.trim();
+              const message = document.querySelector('textarea[placeholder="Message"]').value.trim();
+    
+              if (!fullName || !email || !mobileNumber || !subject || !message) {
+                alert('All fields are required.');
+                return;
+              }
+        
+              if (!/^\S+@\S+\.\S+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+              }
+        
+              if (!/^\d+$/.test(mobileNumber)) {
+                alert('Mobile number must be numeric.');
+                return;
+              }
+              alert(`Thank you, ${fullName}. Your message has been sent successfully.`);
+              document.getElementById('contact-form').reset();
+            });
+         </script>
     </section>
     <footer>
         <div class="text">
